@@ -1,0 +1,25 @@
+CREATE TABLE IF NOT EXISTS TELEMATIC.CAR_TELEMATIC_STAGING
+(
+CARID VARCHAR(255),
+AGE	INT,
+data DATE,
+AVGVELOCITY INT,
+EMAIL VARCHAR(255),
+GENDER CHAR(1),
+CRASH CHAR(1),
+KM INT,
+MARCHA CHAR(1),
+RODOVIA CHAR(1),
+LONGITUDE INT,
+LATITUDE INT
+)
+COMMENT 'Telematic car data'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE;
+
+
+load data inpath '/sourcedata_telematics/dataset.csv' into table car_telematic
+
+cat dataset.csv | sed "s/'/ /g" | sed -r 's/(\[|\])//g'
