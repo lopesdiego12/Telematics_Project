@@ -1,23 +1,19 @@
-CREATE EXTERNAL TABLE IF NOT EXISTS telematic.car
-(CARID VARCHAR(255),
+CREATE TABLE IF NOT EXISTS TELEMATIC.CAR_TELEMATIC_STAGING
+(
+CARID VARCHAR(255),
 AGE	INT,
-data DATE,
 AVGVELOCITY INT,
-EMAIL VARCHAR(255),
 GENDER CHAR(1),
 CRASH CHAR(1),
 KM INT,
 MARCHA CHAR(1),
-RODOVIA CHAR(1),
-LONGITUDE INT,
-LATITUDE INT)
+ROAD CHAR(1),
+CLASS VARCHAR(255)
+)
 COMMENT 'Telematic car data'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
-STORED AS TEXTFILE
-LOCATION '/sourcedata_telematics/';
+STORED AS TEXTFILE;
 
-
-Unix script
-cat dataset_4.csv | sed "s/'/ /g" | sed -r 's/(\[|\])//g' | sed 's/ //g' >> data_4.csv
+load data inpath '/sourcedata_telematics/data_1.csv' into table car_telematic
